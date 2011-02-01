@@ -14,6 +14,7 @@ end
 class PayPal
 
   LOGIN_URL='https://www.paypal.com/us/cgi-bin/webscr?cmd=_login-run'
+  LOGOUT_URL='https://www.paypal.com/us/cgi-bin/webscr?cmd=_logout'
   MULTIUSER_URL="https://www.paypal.com/us/cgi-bin/webscr?cmd=_profile-logins"
 
   def initialize(user,password)
@@ -59,6 +60,11 @@ class PayPal
     pp(users)
   end
 
+  def logout()
+    visit LOGOUT_URL
+  end
+
+
   private
 
   def get_user_confirmation()
@@ -83,6 +89,7 @@ class PayPal
     click_button "Log In"
     sleep 0.5
   end
+    
 
   def get_users(options={})
     @users=[]
